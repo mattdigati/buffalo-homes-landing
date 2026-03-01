@@ -947,8 +947,11 @@
       phone:           (document.getElementById('phone')   || {}).value || '',
       propertyAddress: (document.getElementById('address') || {}).value || '',
       cityNeighborhood:(document.getElementById('city')    || {}).value || '',
-      bedrooms:        (document.getElementById('beds')    || {}).value || '',
-      bathrooms:       (document.getElementById('baths')   || {}).value || '',
+      bedrooms:        (document.getElementById('beds')     || {}).value || '',
+      bathrooms:       (document.getElementById('baths')    || {}).value || '',
+      sqft:            (document.getElementById('sqft')     || {}).value || '',
+      yearBuilt:       (document.getElementById('yearBuilt')|| {}).value || '',
+      zipCode:         (document.getElementById('zipCode')  || {}).value || '',
       status:          'New Lead',
       source:          'Seller Page'
     };
