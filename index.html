@@ -924,6 +924,35 @@
       if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
     });
   });
+  (function() {
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzmxddXAjJjwnaG6ZHrsvvqx0OX1IEMZR-L704fV_9rAUKn4T1jo3rIOPHVx8T9QWnB1w/exec';
+
+  const _orig = window.submitForm;
+  window.submitForm = function() {
+    if (_orig) _orig();
+
+    const payload = {
+      timestamp:       new Date().toLocaleString('en-US', { timeZone: 'America/New_York' }),
+      firstName:       (document.getElementById('fname')   || {}).value || '',
+      lastName:        (document.getElementById('lname')   || {}).value || '',
+      email:           (document.getElementById('email')   || {}).value || '',
+      phone:           (document.getElementById('phone')   || {}).value || '',
+      propertyAddress: (document.getElementById('address') || {}).value || '',
+      cityNeighborhood:(document.getElementById('city')    || {}).value || '',
+      bedrooms:        (document.getElementById('beds')    || {}).value || '',
+      bathrooms:       (document.getElementById('baths')   || {}).value || '',
+      status:          'New Lead',
+      source:          'Seller Page'
+    };
+
+    fetch(SCRIPT_URL, {
+      method:  'POST',
+      mode:    'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body:    JSON.stringify(payload)
+    }).catch(function(err) { console.warn('Sheet sync failed:', err); });
+  };
+})();
 </script>
 </body>
 </html>
